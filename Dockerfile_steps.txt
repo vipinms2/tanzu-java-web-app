@@ -1,0 +1,59 @@
+879  docker build -t tanzu-java-web-app .
+  880  docker tag tanzu-java-web-app:latest tapvipins2.azurecr.io/tanzu-java-web-app:latest
+  881  docker images
+  882  docker push tapvipins2.azurecr.io/tanzu-java-web-app
+  883  tanzu apps workload update tanzu-java-web-app --type web --app tanzu-java-web-app --image registrysapnatap.azurecr.io/dockerimage:latest -n my-apps
+  884  tanzu apps workload update tanzu-java-web-app --type web --app tanzu-java-web-app --image tapvipins2.azurecr.io/tanzu-java-web-app:latest -n my-apps
+  885  tanzu apps workload tail tanzu-java-web-app
+  886  k get pods -n my-apps --watch
+  887  tanzu apps workload get -n my-apps tanzu-java-web-app
+  888  curl -H "Host:tanzu-java-web-app.my-apps.iterate.vipins2.cloudfocused.in" 192.168.39.89
+  889  cat src/main/java/com/example/springboot/HelloController.java 
+  890  docker build -t tanzu-java-web-app-updated .
+  891  docker tag tanzu-java-web-app-update:latest tapvipins2.azurecr.io/tanzu-java-web-app-update:latest
+  892  docker tag tanzu-java-web-app-updated:latest tapvipins2.azurecr.io/tanzu-java-web-app-updated:latest
+  893  docker push tapvipins2.azurecr.io/tanzu-java-web-app-updated:latest
+  894  tanzu apps workload update tanzu-java-web-app --type web --app tanzu-java-web-app --image tapvipins2.azurecr.io/tanzu-java-web-app-updated:latest -n my-apps
+  895  tanzu apps workload get tanzu-java-web-app
+  896  curl -H "Host:tanzu-java-web-app.my-apps.iterate.vipins2.cloudfocused.in" 192.168.39.89
+  897  tanzu apps workload get tanzu-java-web-app
+  898  kubectl get imagerepositories -A
+  899  kubectl get builds -A
+  900  kubectl get podintents -A
+  901  kubectl get deliverable -A
+  902  kubectl get ksvc -A
+  903  kubectl get taskruns -A
+  904  tanzu apps workload get -n my-apps tanzu-java-web-app
+  905  IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
+  906  vi src/main/java/com/example/springboot/HelloController.java 
+  907  IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
+  908  docker images
+  909  IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
+  910  ls
+  911  ls -ltr
+  912  docker tag docker.io/library/demo:0.0.1-SNAPSHOT tapvipins2.azurecr.io/hello-world:latest
+  913  docker images
+  914  docker push tapvipins2.azurecr.io/hello-world
+  915  tanzu apps workload create tanzu-java-web-app --type web --app tanzu-java-web-app -n my-apps tapvipins2.azurecr.io/hello-world
+  916  tanzu apps workload create tanzu-java-web-app-tc2 --type web --app tanzu-java-web-app -n my-apps --image tapvipins2.azurecr.io/hello-world
+  917  k get pods -n my-apps
+  918  tanzu apps workload list -A
+  919  kubectl get imagerepositories -A
+  920  k  delete workload tanzu-java-web-app -n my-apps
+  921  kubectl get imagerepositories -A
+  922  kubectl get builds -A
+  923  kubectl get podintents -A
+  924  kubectl get deliverable -A
+  925  kubectl get ksvc -A
+  926  kubectl get taskruns -A
+  927  tanzu apps workload get -n my-apps tanzu-java-web-app-tc2
+  928  vi src/main/java/com/example/springboot/HelloController.java 
+  929  curl -H "Host:tanzu-java-web-app.my-apps.iterate.vipins2.cloudfocused.in" 192.168.39.89
+  930  curl -H "Host:tanzu-java-web-app-tc2.my-apps.iterate.vipins2.cloudfocused.in" 192.168.39.89
+  931  cat src/main/java/com/example/springboot/HelloController.java 
+  932  IMAGE=ghcr.io/kontinue/hello-world:tanzu-java-web-app ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE
+  933  docker images
+  934  docker tag docker.io/library/demo:0.0.1-SNAPSHOT tapvipins2.azurecr.io/hello-world:latest
+  935  docker tag docker.io/library/demo:0.0.1-SNAPSHOT tapvipins2.azurecr.io/hello-world-updated:latest
+  936  docker push tapvipins2.azurecr.io/hello-world-updated:latest
+  937  tanzu apps workload update tanzu-java-web-app-tc2 --type web --app tanzu-java-web-app -n my-apps --image tapvipins2.azurecr.io/hello-world-updated
